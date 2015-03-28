@@ -13,5 +13,8 @@
     "gulp-babel": "^4.0.0",
     "gulp-jasmine": "^2.0.0",
     "gulp-notify": "^2.2.0"
+  },
+  "dependencies": {
+    "lodash": "^3.6.0"
   }
 }

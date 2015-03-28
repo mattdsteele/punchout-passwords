@@ -13,4 +13,9 @@ describe('punch out passwords', () => {
   it('creates a checksum', ()=> {
     expect(punchOut.makeOffset(2, 4, 0, 1, 1, 9)).toEqual(238);
   });
+
+  it('creates intermediate bits', ()=> {
+    let expected = [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0];
+    expect(punchOut.intermediateBits(2, 4, 0, 1, 1, 9)).toEqual(expected);
+  });
 });
