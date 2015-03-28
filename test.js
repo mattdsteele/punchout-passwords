@@ -18,4 +18,9 @@ describe('punch out passwords', () => {
     let expected = [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0];
     expect(punchOut.intermediateBits(2, 4, 0, 1, 1, 9)).toEqual(expected);
   });
+  it('creates intermediate bits', ()=> {
+    let intermediate = [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0];
+    let expected =     [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0];
+    expect(punchOut.addOpponent(intermediate, 238, 2)).toEqual(expected);
+  });
 });
