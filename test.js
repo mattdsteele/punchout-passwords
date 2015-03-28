@@ -1,4 +1,4 @@
-import {addOffset, makeOffset, intermediateBits, addOpponent} from './index.js';
+import {addOffset, makeOffset, intermediateBits, addOpponent, rotateCount, rotate} from './index.js';
 
 describe('punch out passwords', () => {
   it('adds an offset', () => {
@@ -20,5 +20,15 @@ describe('punch out passwords', () => {
     let intermediate = [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0];
     let expected =     [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0];
     expect(addOpponent(intermediate, 238, 2)).toEqual(expected);
+  });
+
+  it('knows the rotateCount', ()=> {
+    expect(rotateCount(2, 1)).toEqual(1);
+  });
+
+  it('rotates', ()=> {
+    let start = [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0];
+    let end   = [0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0];
+    expect(rotate(start, 2)).toEqual(end);
   });
 });

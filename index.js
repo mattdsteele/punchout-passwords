@@ -1,5 +1,12 @@
 var _ = require('lodash');
 
+function digits(val, bitPair) {
+  return _.padLeft(val.toString(2), 8, '0')
+    .split('')
+    .map(i => parseInt(i))
+    .slice(bitPair * 2, bitPair * 2 + 2);
+}
+
 export function makeOffset(...args) {
   return 255 - args.reduce((a,b) =>  a + b, 0);
 }
@@ -11,13 +18,6 @@ export function addOffset(input) {
     withOffset.push((val + offsets[i]) % 10);
   });
   return withOffset;
-}
-
-export function digits(val, bitPair) {
-  return _.padLeft(val.toString(2), 8, '0')
-    .split('')
-    .map(i => parseInt(i))
-    .slice(bitPair * 2, bitPair * 2 + 2);
 }
 
 export function intermediateBits(winHigh, winLow, lossHigh, lossLow, koHigh, koLow) {
@@ -46,3 +46,14 @@ export function addOpponent(intermediate, checksum, opponent) {
   return intermediate;
 }
 
+export function rotateCount(opponent, losses) {
+  return (opponent + losses + 1) % 3;
+}
+
+export function rotate(intermediate, rotateCount) {
+  _.times(rotateCount, ()=> {
+    let removed = intermediate.splice(0, 1);
+    intermediate = intermediate.concat(removed);
+  });
+  return intermediate;
+}
