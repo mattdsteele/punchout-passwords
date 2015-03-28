@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
   babel = require('gulp-babel'),
+  notify = require('gulp-notify'),
   jasmine = require('gulp-jasmine');
 
 gulp.task('babel', function() {
@@ -9,7 +10,10 @@ gulp.task('babel', function() {
 });
 gulp.task('test', function() {
   return gulp.src('dist/**/*.js')
-    .pipe(jasmine());
+    .pipe(jasmine())
+    .on('error', notify.onError({
+      title: 'Test failed'
+    }));
 });
 
 gulp.task('watch', function() {
