@@ -1,7 +1,9 @@
-var _ = require('lodash');
+function padLeft(nr, n, str){
+  return Array(n-String(nr).length+1).join(str||'0')+nr;
+}
 
 function digits(val, bitPair) {
-  return _.padLeft(parseInt(val).toString(2), 8, '0')
+  return padLeft(parseInt(val).toString(2), 8, '0')
     .split('')
     .map(i => parseInt(i))
     .slice(bitPair * 2, bitPair * 2 + 2);
@@ -51,10 +53,10 @@ export function rotateCount(opponent, losses) {
 }
 
 export function rotate(intermediate, rotateCount) {
-  _.times(rotateCount, ()=> {
+  for (let i = 0; i < rotateCount; i++) {
     let removed = intermediate.splice(0, 1);
     intermediate = intermediate.concat(removed);
-  });
+  }
   return intermediate;
 }
 
@@ -70,7 +72,7 @@ export function breakApart(intermediate, rotateCount) {
     x.push(intermediate.slice(21, 24));
     x.push(intermediate.slice(24, 27));
     x.push(intermediate.slice(27, 28).concat(
-      _.padLeft(rotateCount.toString(2), 2, 0)
+      padLeft(rotateCount.toString(2), 2, 0)
         .split('')
         .map(i => parseInt(i))));
   return x.map(i => parseInt(i.join(''), 2));
