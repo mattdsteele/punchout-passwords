@@ -1,0 +1,15 @@
+{
+  "name": "punchout-passwords",
+  "version": "1.0.0",
+  "description": "Generates passwords for Mike Tyson's Punch-Out",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Steele",
+  "license": "Apache2",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-mocha": "^2.0.0"
+  }
+}
