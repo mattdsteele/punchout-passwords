@@ -4,6 +4,8 @@ Written in ES6
 
 Based on the algorithm outlined [here](http://tomorrowcorporation.com/posts/retro-game-internals-punch-out-passwords).
 
+## [See it in action](http://d.matthew-steele.com/projects/punchout/)
+
 # Usage
 
 ## ES6 Module
