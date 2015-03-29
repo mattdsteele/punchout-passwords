@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   babel = require('gulp-babel'),
   notify = require('gulp-notify'),
+  connect = require('gulp-connect');
   jasmine = require('gulp-jasmine');
 
 gulp.task('babel', function() {
@@ -19,6 +20,13 @@ gulp.task('test', function() {
 gulp.task('watch', function() {
   gulp.watch(['*.js'], ['babel']);
   gulp.watch(['dist/**'], ['test']);
+});
+
+gulp.task('serve', function() {
+  connect.server({
+    root: '.',
+    livereload: true
+  });
 });
 
 gulp.task('default', ['babel', 'test', 'watch']);
