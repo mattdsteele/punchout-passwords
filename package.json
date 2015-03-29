@@ -13,7 +13,9 @@
     "gulp-babel": "^4.0.0",
     "gulp-connect": "^2.2.0",
     "gulp-jasmine": "^2.0.0",
-    "gulp-notify": "^2.2.0"
+    "gulp-notify": "^2.2.0",
+    "run-sequence": "^1.0.2",
+    "systemjs-builder": "^0.10.3"
   },
   "dependencies": {
     "lodash": "^3.6.0"

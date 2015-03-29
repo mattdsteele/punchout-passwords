@@ -1,0 +1,20 @@
+body {
+  max-width: 400px;
+  margin: 0 auto;
+}
+input, select, img {
+  width: 100%;
+}
+
+.col {
+  width: 25%;
+  float: left;
+}
+.results {
+  font-size: 18vw;
+}
+@media(min-width: 400px) {
+  .results {
+    font-size: 4.5em;
+  }
+}

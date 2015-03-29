@@ -1,5 +1,8 @@
 var gulp = require('gulp'),
   babel = require('gulp-babel'),
+  path = require('path'),
+  runSequence = require('run-sequence'),
+  Builder = require('systemjs-builder'),
   notify = require('gulp-notify'),
   connect = require('gulp-connect');
   jasmine = require('gulp-jasmine');
@@ -24,9 +27,40 @@ gulp.task('watch', function() {
 
 gulp.task('serve', function() {
   connect.server({
-    root: '.',
+    root: 'web',
     livereload: true
   });
 });
 
 gulp.task('default', ['babel', 'test', 'watch']);
+
+gulp.task('bundle', function(cb) {
+  var Builder2 = require('systemjs-builder');
+  var builder = new Builder2();
+  builder.loadConfig('./config.js')
+  .then(function() {
+    console.log('in bundle');
+    builder.loader.baseURL = path.resolve('./');
+    builder.buildSFX('app', 'web/app-built.js', {
+      sourceMaps: true,
+      config: { 
+        sourceRoot: 'dist' ,
+        baseURL: path.resolve('./')
+      }
+    }).then(function() {
+      console.log('done');
+      return cb();
+    }).catch(function(ex) {
+      cb(new Error(ex));
+    });
+  });
+});
+
+gulp.task('assets', function() {
+  gulp.src('www/*')
+  .pipe(gulp.dest('web'));
+});
+
+gulp.task('web', function(cb) {
+  runSequence('bundle', 'assets', 'serve', cb);
+});
