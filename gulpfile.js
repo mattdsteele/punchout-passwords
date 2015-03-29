@@ -27,7 +27,7 @@ gulp.task('watch', function() {
 
 gulp.task('serve', function() {
   connect.server({
-    root: 'web',
+    root: './',
     livereload: true
   });
 });
@@ -60,5 +60,5 @@ gulp.task('assets', function() {
 });
 
 gulp.task('web', function(cb) {
-  runSequence('bundle', 'assets', 'serve', cb);
+  runSequence('bundle', 'assets', cb);
 });
