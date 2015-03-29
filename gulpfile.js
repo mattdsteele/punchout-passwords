@@ -39,7 +39,6 @@ gulp.task('bundle', function(cb) {
   var builder = new Builder2();
   builder.loadConfig('./config.js')
   .then(function() {
-    console.log('in bundle');
     builder.loader.baseURL = path.resolve('./');
     builder.buildSFX('app', 'web/app-built.js', {
       sourceMaps: true,
@@ -48,7 +47,6 @@ gulp.task('bundle', function(cb) {
         baseURL: path.resolve('./')
       }
     }).then(function() {
-      console.log('done');
       return cb();
     }).catch(function(ex) {
       cb(new Error(ex));
