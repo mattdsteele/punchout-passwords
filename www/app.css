@@ -13,6 +13,15 @@ input, select, img {
 .results {
   font-size: 18vw;
 }
+.inputs {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+.enemy {
+  flex: 2;
+}
 @media(min-width: 400px) {
   .results {
     font-size: 4.5em;
