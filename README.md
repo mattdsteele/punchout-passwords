@@ -1,6 +1,6 @@
 # Punch-Out Codes Generator
 
-Written in ES6
+Written in ES6; the meat of the algorithm is in `index.js`.
 
 Based on the algorithm outlined [here](http://tomorrowcorporation.com/posts/retro-game-internals-punch-out-passwords).
 
@@ -24,7 +24,7 @@ punchOut.makePassword(winNumber, lossNumber, koNumber, nextEnemy);
 
 ## CommonJS
 
-Load from `dist/` folder
+`gulp babel`, then load from `dist/` folder
 
 ## Web
 
