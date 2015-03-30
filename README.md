@@ -1,5 +1,7 @@
 # Punch-Out Codes Generator
 
+![Passcodes](http://tomorrowcorporation.com/blog/wp-content/uploads/2015/03/punchout07.png)
+
 Written in ES6; the meat of the algorithm is in `index.js`.
 
 Based on the algorithm outlined [here](http://tomorrowcorporation.com/posts/retro-game-internals-punch-out-passwords).
