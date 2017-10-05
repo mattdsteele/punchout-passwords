@@ -1,16 +1,16 @@
-function padLeft(nr, n, str){
-  return Array(n-String(nr).length+1).join(str||'0')+nr;
+function padLeft(nr, n, str) {
+  return Array(n - String(nr).length + 1).join(str || "0") + nr;
 }
 
 function digits(val, bitPair) {
-  return padLeft(parseInt(val).toString(2), 8, '0')
-    .split('')
+  return padLeft(parseInt(val).toString(2), 8, "0")
+    .split("")
     .map(i => parseInt(i))
     .slice(bitPair * 2, bitPair * 2 + 2);
 }
 
 export function makeOffset(...args) {
-  return 255 - args.reduce((a,b) =>  a + parseInt(b), 0);
+  return 255 - args.reduce((a, b) => a + parseInt(b), 0);
 }
 
 export function addOffset(input) {
@@ -22,7 +22,14 @@ export function addOffset(input) {
   return withOffset;
 }
 
-export function intermediateBits(winHigh, winLow, lossHigh, lossLow, koHigh, koLow) {
+export function intermediateBits(
+  winHigh,
+  winLow,
+  lossHigh,
+  lossLow,
+  koHigh,
+  koLow
+) {
   return [0, 0]
     .concat(digits(winHigh, 2))
     .concat(digits(koLow, 3))
@@ -62,24 +69,27 @@ export function rotate(intermediate, rotateCount) {
 
 export function breakApart(intermediate, rotateCount) {
   let x = [];
-    x.push(intermediate.slice(0, 3));
-    x.push(intermediate.slice(3, 6));
-    x.push(intermediate.slice(6, 9));
-    x.push(intermediate.slice(9, 12));
-    x.push(intermediate.slice(12, 15));
-    x.push(intermediate.slice(15, 18));
-    x.push(intermediate.slice(18, 21));
-    x.push(intermediate.slice(21, 24));
-    x.push(intermediate.slice(24, 27));
-    x.push(intermediate.slice(27, 28).concat(
+  x.push(intermediate.slice(0, 3));
+  x.push(intermediate.slice(3, 6));
+  x.push(intermediate.slice(6, 9));
+  x.push(intermediate.slice(9, 12));
+  x.push(intermediate.slice(12, 15));
+  x.push(intermediate.slice(15, 18));
+  x.push(intermediate.slice(18, 21));
+  x.push(intermediate.slice(21, 24));
+  x.push(intermediate.slice(24, 27));
+  x.push(
+    intermediate.slice(27, 28).concat(
       padLeft(rotateCount.toString(2), 2, 0)
-        .split('')
-        .map(i => parseInt(i))));
-  return x.map(i => parseInt(i.join(''), 2));
-};
+        .split("")
+        .map(i => parseInt(i))
+    )
+  );
+  return x.map(i => parseInt(i.join(""), 2));
+}
 
 function tensDigit(number) {
-  return number < 10 ? 0 : number.toString().substring(0,1);
+  return number < 10 ? 0 : number.toString().substring(0, 1);
 }
 
 export default function makePassword(wins, losses, koCount, opponentNumber) {
@@ -90,10 +100,17 @@ export default function makePassword(wins, losses, koCount, opponentNumber) {
     koHigh = tensDigit(koCount),
     koLow = koCount % 10;
   let checksum = makeOffset(winHigh, winLow, lossHigh, lossLow, koHigh, koLow);
-  let intermediate = intermediateBits(winHigh, winLow, lossHigh, lossLow, koHigh, koLow);
+  let intermediate = intermediateBits(
+    winHigh,
+    winLow,
+    lossHigh,
+    lossLow,
+    koHigh,
+    koLow
+  );
   let withOpponent = addOpponent(intermediate, checksum, opponentNumber);
   let rotateNumber = rotateCount(opponentNumber, losses);
   let newIntermediate = rotate(intermediate, rotateNumber);
   let brokenApart = breakApart(newIntermediate, rotateNumber);
   return addOffset(brokenApart);
-};
+}
