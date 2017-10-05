@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "module": "src/index.js",
   "scripts": {
-    "build": "babel -d lib -s true src",
-    "test": "mocha --require babel-register test"
+    "build": "tsc",
+    "test": "mocha --require ts-node/register test/**.ts"
   },
   "author": "Matt Steele",
   "license": "Apache2",
@@ -15,7 +15,9 @@
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "chai": "^4.1.2",
-    "mocha": "^4.0.0"
+    "mocha": "^4.0.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.3"
   },
   "dependencies": {
     "lodash": "^3.6.0"

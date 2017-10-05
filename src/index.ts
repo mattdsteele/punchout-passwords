@@ -92,7 +92,14 @@ function tensDigit(number) {
   return number < 10 ? 0 : number.toString().substring(0, 1);
 }
 
-export default function makePassword(wins, losses, koCount, opponentNumber) {
+export type OpponentNumber = 0 | 1 | 2;
+
+export default function makePassword(
+  wins: number,
+  losses: number,
+  koCount: number,
+  opponentNumber: OpponentNumber
+) {
   let winHigh = tensDigit(wins),
     winLow = wins % 10,
     lossHigh = 0,

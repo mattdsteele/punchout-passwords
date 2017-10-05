@@ -6,8 +6,9 @@ import {
   rotateCount,
   rotate,
   breakApart
-} from "./../src/index.js";
-import punchOut from "../src/index.js";
+} from "./../src/index";
+import punchOut from "../src/index";
+import { describe, it } from "mocha";
 
 import { expect } from "chai";
 
