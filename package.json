@@ -1,14 +1,22 @@
 {
   "name": "punchout-passwords",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Generates passwords for Mike Tyson's Punch-Out",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel -d lib -s true src",
+    "test": "mocha --require babel-register test"
   },
   "author": "Matt Steele",
   "license": "Apache2",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.0"
+  },
   "dependencies": {
     "lodash": "^3.6.0"
   }
